@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0d7a6f93-da76-4645-84e0-346ddd2d4d59" name="okschool" url="http://school.monmedia.ru">
+        <fileTransfer host="school.monmedia.ru" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="cef37479-cc1a-4042-8f08-d2090ce6d5d3" name="okschool-host" url="http://89.253.224.110">
+        <fileTransfer host="89.253.224.110" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
