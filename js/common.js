@@ -473,22 +473,25 @@
         $('[data-form-submit]').on('submit', function (e) {
             e.preventDefault();
 
+            console.log('submit');
+
             var $form = $(this);
+            var $phoneInput = $form.find('input[name=phone]');
+            $phoneInput.removeClass('error-input');
 
             var $data = $form.serialize();
 
             $.post('./quickstart.php', $data, function (response) {
-                console.log(response);
-
-                var res = parse.JSON(response);
+                var res = JSON.parse(response);
 
                 if(res.success === true) {
-                    app.popups().openPopup('thanks');
+                    var closingPopup = $form.closest('.popup-wrapper').attr('data-popup');
+                    app.popups().changePopup(closingPopup, 'thanks');
                     setTimeout(function () {
                         app.popups().closePopup('thanks');
                     }, 3000);
                 } else {
-                    alert(res.message);
+                    $phoneInput.addClass('error-input');
                 }
             });
         });
