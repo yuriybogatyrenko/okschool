@@ -82,7 +82,7 @@ $service = new Google_Service_Sheets($client);
 $spreadsheetId = '1AEcbHfZt-_qqCgjsTx4hukIANy5uG2I3awE7vI6RoVE';
 $sheetId = 0;
 
-$range = "Sheet1";       //your worksheet name
+$range = "okschool";       //your worksheet name
 $valueRange = new Google_Service_Sheets_ValueRange();
 
 $lead['date'] = date('d.m');
