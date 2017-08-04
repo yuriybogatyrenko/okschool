@@ -53,7 +53,9 @@ function getClient()
     // Refresh the token if it's expired.
     if ($client->isAccessTokenExpired()) {
         $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-        file_put_contents($credentialsPath, json_encode($client->getAccessToken()));
+        $newAccessToken = $client->getAccessToken();
+        $accessToken = array_merge($accessToken, $newAccessToken);
+        file_put_contents($credentialsPath, json_encode($accessToken));
     }
 
     return $client;
@@ -87,12 +89,15 @@ $valueRange = new Google_Service_Sheets_ValueRange();
 
 $lead['date'] = date('d.m');
 $lead['time'] = date('H:i');
-$lead['name'] = $_POST['name'] ? $_POST['name'] : '';
+$lead['your-name'] = $_POST['your-name'] ? $_POST['your-name'] : '';
 $lead['email'] = $_POST['email'] ? $_POST['email'] : '';
 $lead['phone'] = $_POST['phone'] ? $_POST['phone'] : '';
+$lead['question'] = $_POST['question'] ? $_POST['question'] : '';
+$lead['url'] = $_POST['url'] ? $_POST['url'] : '';
+$lead['form-name'] = $_POST['form-name'] ? $_POST['form-name'] : '';
 
 if ($lead['phone'] !== ''):
-    $valueRange->setValues(["values" => [$lead['date'], $lead['time'], $lead['name'], $lead['email'], $lead['phone']]]);
+    $valueRange->setValues(["values" => [$lead['date'], $lead['time'], $lead['your-name'], $lead['email'], $lead['phone'], $lead['question'], $lead['url'], $lead['form-name']]]);
     $conf = ["valueInputOption" => "RAW"];
     $service->spreadsheets_values->append($spreadsheetId, $range, $valueRange, $conf);
 
